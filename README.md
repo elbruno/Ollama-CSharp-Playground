@@ -35,7 +35,7 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 
 ## How to run a sample
 
-1. Open a terminal and navigate to the desired project. In example, let's run `LabsPhi301`.
+1. Open a terminal and navigate to the desired project. In example, let's run `Sample02`, the console chat.
     ```bash
     cd .\src\Sample02\
     ```
