@@ -51,7 +51,7 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 
     The running demo is similar to this one:
 
-    ![Chat running demo](./imgs/20SampleConsole.gif)
+    ![Chat running demo](./imgs/20SampleConsole.png)
 
 ## References
 
