@@ -1,38 +1,42 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/python-3
 {
-    "name": "Ollama Python Playground",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+    "name": "sk - api manifest aspire labs",
+    "image": "mcr.microsoft.com/devcontainers/dotnet",
     "features": {
-        "ghcr.io/devcontainers/features/dotnet:2": { "version": "8.0" },
-        "ghcr.io/prulloac/devcontainer-features/ollama:1": {},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-        "ghcr.io/devcontainers/features/github-cli:1": { "version": "2" }
+      "ghcr.io/devcontainers/features/dotnet:2": { "version": "8.0"},
+      "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+      "ghcr.io/devcontainers/features/azure-cli:1": {},
+      "ghcr.io/devcontainers/features/docker-from-docker:1.5.0": {},
+      "ghcr.io/devcontainers/features/github-cli:1": { "version": "2" },
+      "ghcr.io/prulloac/devcontainer-features/ollama:1": {},
+      "sshd": "latest"
     },
-    // Configure tool-specific properties.
     "customizations": {
-        // Configure properties specific to VS Code.
-        "vscode": {},
-
-            // Add the IDs of extensions you want installed when the container is created.
+        "vscode": {
             "extensions": [
-				"ms-dotnettools.dotnet-interactive-vscode",
                 "ms-vscode.vscode-node-azure-pack",
                 "github.vscode-github-actions",
                 "ms-dotnettools.csdevkit",
+				"ms-dotnettools.vscode-dotnet-runtime",
                 "github.copilot"
             ]
         }
     },
-
-	// Use 'postStartCommand' to run commands after the container is started (more frequently than create).
-    "postCreateCommand": "cd src && dotnet restore && dotnet build",
-
-
-    // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "forwardPorts": [
+        32000,
+        32001
+    ],
+    "postCreateCommand": "sudo dotnet workload update & sudo dotnet workload install aspire & sudo dotnet workload list",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb",
         "cpus": 4
-    },    
+    },
+    "portsAttributes": {
+        "32001": {
+            "label": "Back End"
+        },
+        "32000": {
+            "label": "Front End"
+        }
+    }
 }
