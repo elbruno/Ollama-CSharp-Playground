@@ -4,7 +4,7 @@
 [![Twitter: elbruno](https://img.shields.io/twitter/follow/elbruno.svg?style=social)](https://twitter.com/elbruno)
 ![GitHub: elbruno](https://img.shields.io/github/followers/elbruno?style=social)
 
-This project is designed to be opened in GitHub Codespaces as an easy way for anyone to try out SLMs (small language models) entirely in the browser.
+This project is designed to be opened in GitHub Codespaces as an easy way for anyone to try out SLMs (small language models) entirely in the browser. This project is based on the [Ollama Python Playground](https://github.com/pamelafox/ollama-python-playground/)
 
 1. Open the Codespace in the browser using the `Code` button at the top of the repository.
 2. Once the Codespace is loaded, it should have [ollama](https://ollama.com/) pre-installed as well as [.NET 8](https://dotnet.microsoft.com/en-us/download).
@@ -28,6 +28,10 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 |---------|-------------|
 | Sample01  | Simple prompt. |
 | Sample02  | Chat in a console application. |
+
+## How to run a sample
+
+
 
 ## References
 
