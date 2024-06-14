@@ -7,7 +7,7 @@
 This project is designed to be opened in GitHub Codespaces as an easy way for anyone to try out SLMs (small language models) entirely in the browser. This project is based on the [Ollama Python Playground](https://github.com/pamelafox/ollama-python-playground/)
 
 1. Create a new  Codespace using the `Code` button at the top of the repository.
-![](./imgs/05CreateCodeSpace.png)
+![create Codespace](./imgs/05CreateCodeSpace.png)
 
 1. Once the Codespace is loaded, it should have [ollama](https://ollama.com/) pre-installed as well as [.NET 8](https://dotnet.microsoft.com/en-us/download).
 1. Ask Ollama to run the SLM of your choice. For example, to run the [phi3](https://ollama.com/library/phi3) model:
@@ -22,6 +22,8 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
     ```shell
     >>> Write a joke about kittens
     ```
+
+![run ollama and ask for a joke](./imgs/10ollamarunphi.gif)
 
 5. After several seconds, you should see a response stream in from the model.
 6. To learn about different techniques used with language models, check the sample projects in the `.\src` folder:
