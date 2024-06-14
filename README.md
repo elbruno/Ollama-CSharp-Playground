@@ -30,12 +30,26 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 
 | Project | Description |
 |---------|-------------|
-| Sample01  | Simple prompt. |
-| Sample02  | Chat in a console application. |
+| Sample01  | This is a sample project that uses a the Phi-3 hosted in ollama model to answer a question.  |
+| Sample02  | This is a sample project that implement a Console chat using Semantic Kernel.	 |
 
 ## How to run a sample
 
+1. Open a terminal and navigate to the desired project. In example, let's run `LabsPhi301`.
+    ```bash
+    cd .\src\Sample02\
+    ```
 
+1. Run the project with the command
+    ```bash
+    dotnet run
+    ```
+
+1.  The sample project ask for a user input and replies using the local mode. 
+
+    The running demo is similar to this one:
+
+    ![Chat running demo](./imgs/20SampleConsole.gif)
 
 ## References
 
