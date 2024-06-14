@@ -36,6 +36,7 @@ var kernel = builder.Build();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var history = new ChatHistory();
+history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a funny ways. Use emojis if possible.");
 
 while (true)
 {

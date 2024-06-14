@@ -42,7 +42,7 @@ var settings = new OpenAIPromptExecutionSettings
 };
 var kernelArguments = new KernelArguments(settings);
 
-var prompt = "Write a short joke about kittens in Spanish";
+var prompt = "Write a short joke about kittens. Use Emojis";
 var response = kernel.InvokePromptStreamingAsync(prompt, kernelArguments);
 
 await foreach (var message in response)
