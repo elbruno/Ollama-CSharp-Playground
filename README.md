@@ -36,16 +36,18 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 ## How to run a sample
 
 1. Open a terminal and navigate to the desired project. In example, let's run `Sample02`, the console chat.
+
     ```bash
     cd .\src\Sample02\
     ```
 
 1. Run the project with the command
+
     ```bash
     dotnet run
     ```
 
-1.  The sample project ask for a user input and replies using the local mode. 
+1. The sample project ask for a user input and replies using the local mode.
 
     The running demo is similar to this one:
 
