@@ -31,7 +31,8 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 | Project | Description |
 |---------|-------------|
 | Sample01  | This is a sample project that uses a the Phi-3 hosted in ollama model to answer a question.  |
-| Sample02  | This is a sample project that implement a Console chat using Semantic Kernel.	 |
+| Sample02  | This is a sample project that implement a Console chat using Semantic Kernel. |
+| Sample03  | This is a sample project that implement a RAG using local embeddings and Semantic Kernel. |
 
 ## How to run a sample
 
@@ -60,6 +61,7 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 - [Phi-3 Cookbook](https://aka.ms/Phi-3CookBook)
 - [Generative AI for beginners](https://github.com/microsoft/generative-ai-for-beginners)
 - [Semantic Kernel main repository](https://github.com/microsoft/semantic-kernel)
+- [Smart Components - Local Embeddings](https://github.com/dotnet-smartcomponents/smartcomponents/blob/main/docs/local-embeddings.md)
 
 ## Author
 
