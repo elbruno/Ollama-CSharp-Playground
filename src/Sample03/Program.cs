@@ -23,7 +23,12 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //    THE SOFTWARE.
 
-#pragma warning disable SKEXP0003, SKEXP0011, SKEXP0052
+#pragma warning disable SKEXP0001
+#pragma warning disable SKEXP0003
+#pragma warning disable SKEXP0010
+#pragma warning disable SKEXP0011
+#pragma warning disable SKEXP0050
+#pragma warning disable SKEXP0052
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,7 +50,7 @@ Console.WriteLine("");
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: "phi3",
-    endpoint: new Uri("localhost:11434/"),
+    endpoint: new Uri("http://localhost:11434"),
     apiKey: "apikey");
 builder.AddLocalTextEmbeddingGeneration();
 Kernel kernel = builder.Build();
@@ -104,3 +109,5 @@ await foreach (var result in response)
 {
     Console.Write(result);
 }
+
+Console.WriteLine($"");
