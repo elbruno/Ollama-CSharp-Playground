@@ -41,18 +41,21 @@ Console.WriteLine("1st approach will be to ask the question directly to the Phi-
 Console.WriteLine("2nd approach will be to add facts to a semantic memory and ask the question again");
 Console.WriteLine("");
 
-// Create kernel with a custom http address
+// Create a chat completion service
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: "phi3",
-    endpoint: new Uri("http://localhost:11434"),
+    endpoint: new Uri("localhost:11434/"),
     apiKey: "apikey");
 builder.AddLocalTextEmbeddingGeneration();
-var kernel = builder.Build();
+Kernel kernel = builder.Build();
 
-var response = await kernel.InvokePromptAsync(question);
 Console.WriteLine($"Phi-3 response (no memory).");
-Console.WriteLine($"{question}: {response.GetValue<string>()}");
+var response = kernel.InvokePromptStreamingAsync(question);
+await foreach (var result in response)
+{
+    Console.Write(result);
+}
 
 // separator
 Console.WriteLine("");
@@ -94,8 +97,10 @@ var arguments = new KernelArguments(settings)
     { "collection", MemoryCollectionName }
 };
 
-response = await kernel.InvokePromptAsync(prompt, arguments);
-
-// run the prompt
 Console.WriteLine($"Phi-3 response (using semantic memory).");
-Console.WriteLine($"{question}: {response.GetValue<string>()}");
+
+response = kernel.InvokePromptStreamingAsync(prompt, arguments);
+await foreach (var result in response)
+{
+    Console.Write(result);
+}
