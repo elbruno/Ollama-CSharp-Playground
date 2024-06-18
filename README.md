@@ -48,9 +48,17 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
     dotnet run
     ```
 
-1. The sample project ask for a user input and replies using the local mode.
+1. The project `Sample02`, defines a custom system message:
 
-    The running demo is similar to this one:
+    ```csharp
+    var history = new ChatHistory();
+    history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a funny ways. Use emojis if possible.");
+
+    ```
+
+1. So when the user ask a question, like `What is the capital of Italy?`, the chat replies using the local mode.
+   
+    The output is similar to this one:
 
     ![Chat running demo](./imgs/20SampleConsole.png)
 
