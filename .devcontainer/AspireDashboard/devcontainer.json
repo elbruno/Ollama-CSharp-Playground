@@ -37,7 +37,8 @@
         32000,
         32001
     ],
-    "postCreateCommand": "sudo dotnet workload update & sudo dotnet workload install aspire & sudo dotnet workload list",    
+    "postCreateCommand": "sudo dotnet workload update & sudo dotnet workload install aspire & sudo dotnet workload list",
+    "postStartCommand": "./.devcontainer/AspireDashboard/postCreateCommand.sh",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb",
