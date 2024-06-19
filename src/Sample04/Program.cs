@@ -58,6 +58,7 @@ while (true)
         break;
     }
     history.AddUserMessage(userQ);
+    kernel.Services.GetRequiredService<ILogger<Program>>().LogInformation($"User Question: {userQ}");
 
     Console.Write($"Phi-3: ");
     StringBuilder sb = new();
@@ -71,7 +72,6 @@ while (true)
     history.AddAssistantMessage(sb.ToString());
 
     // logging message
-    kernel.Services.GetRequiredService<ILogger<Program>>().LogInformation($"User Question: {userQ}");
     kernel.Services.GetRequiredService<ILogger<Program>>().LogInformation($"Phi-3 Response: {sb.ToString()}");
 }
 
@@ -100,8 +100,9 @@ static IKernelBuilder ConfigureOpenTelemetry(IKernelBuilder builder)
         });
 
     // Use the OTLP exporter if the endpoint is configured.
-    var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-    var useOtlpExporter = !string.IsNullOrWhiteSpace(config["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+    var otlpEndPoint ="http://localhost:4317";
+
+    var useOtlpExporter = !string.IsNullOrWhiteSpace(otlpEndPoint);
     if (useOtlpExporter)
     {
         builder.Services.AddOpenTelemetry().UseOtlpExporter();
