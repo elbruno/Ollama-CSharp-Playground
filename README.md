@@ -33,6 +33,7 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 | Sample01  | This is a sample project that uses a the Phi-3 hosted in ollama model to answer a question.  |
 | Sample02  | This is a sample project that implement a Console chat using Semantic Kernel. |
 | Sample03  | This is a sample project that implement a RAG using local embeddings and Semantic Kernel. |
+| Sample04 ***(WIP)*** | This is a sample console project that implement a Console chat using Semantic Kernel. It also uses Aspire Dashboard to track telemetry. Check the Aspire Dashboard in the references sections to learn more. |
 
 ## How to run a sample
 
@@ -76,6 +77,7 @@ If you want to learn more about how to use this repo, check the following videos
 - [Generative AI for beginners](https://github.com/microsoft/generative-ai-for-beginners)
 - [Semantic Kernel main repository](https://github.com/microsoft/semantic-kernel)
 - [Smart Components - Local Embeddings](https://github.com/dotnet-smartcomponents/smartcomponents/blob/main/docs/local-embeddings.md)
+- [Aspire Dashboard](https://www.aspiredashboard.com/)
 
 ## Author
 
