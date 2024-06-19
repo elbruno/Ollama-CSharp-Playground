@@ -62,6 +62,12 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 
     ![Chat running demo](./imgs/20SampleConsole.png)
 
+## Video Tutorials
+
+If you want to learn more about how to use this repo, check the following videos:
+
+[![Watch the video](./imgs/40ytintro.jpg)](https://youtu.be/HmKpHErUEHM)
+
 ## References
 
 - [Phi-3 Microsoft Blog](https://aka.ms/phi3blog-april)
