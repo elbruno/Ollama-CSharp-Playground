@@ -19,7 +19,13 @@
             "aspNetCoreRuntimeVersions": "8.0"
         },
       "ghcr.io/prulloac/devcontainer-features/ollama:1": {},
-      "mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0": {},
+      "mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0": {
+        "version": "latest",
+        "runArgs": [
+          "--rm -it -p 18888:18888 -p 4317:18889"
+        ]
+
+      },
       "sshd": "latest"
     },
     "customizations": {
