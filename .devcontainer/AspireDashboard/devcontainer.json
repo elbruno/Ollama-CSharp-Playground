@@ -38,11 +38,7 @@
         32001
     ],
     "postCreateCommand": "sudo dotnet workload update & sudo dotnet workload install aspire & sudo dotnet workload list",
-    "postStartCommand": [
-        "echo 'start post start commands'",
-         "docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0",
-         "ollama run phi3"
-    ],
+    "postStartCommand": "echo 'start post start commands' & docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0 ollama run phi3",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb",
