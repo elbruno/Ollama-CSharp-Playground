@@ -69,7 +69,6 @@ Console.WriteLine("");
 
 // get the embeddings generator service
 var embeddingGenerator = kernel.Services.GetRequiredService<ITextEmbeddingGenerationService>();
-
 var memory = new SemanticTextMemory(new VolatileMemoryStore(), embeddingGenerator);
 
 // add facts to the collection
