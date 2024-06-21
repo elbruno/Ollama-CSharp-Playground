@@ -1,5 +1,5 @@
 {
-    "name": "sk - api manifest aspire labs",
+    "name": "aspire dashboard labs",
     "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
