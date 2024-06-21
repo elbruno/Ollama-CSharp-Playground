@@ -12,7 +12,6 @@
             "dotnetRuntimeVersions": "8.0",
             "aspNetCoreRuntimeVersions": "8.0"
         },
-      "ghcr.io/prulloac/devcontainer-features/ollama:1": {},
       "sshd": "latest"
     },
     "customizations": {
