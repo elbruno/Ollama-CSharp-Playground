@@ -1,6 +1,6 @@
 {
-    "name": "sk - api manifest aspire labs",
-    "image": "mcr.microsoft.com/devcontainers/dotnet",
+    "name": "Ollama with Phi-3",
+    "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/github-cli:1": {},
@@ -8,8 +8,7 @@
         "ghcr.io/devcontainers/features/dotnet:2": {
             "version": "none",
             "dotnetRuntimeVersions": "8.0",
-            "aspNetCoreRuntimeVersions": "8.0",
-            "workloads": "aspire"
+            "aspNetCoreRuntimeVersions": "8.0"
         },
       "ghcr.io/prulloac/devcontainer-features/ollama:1": {},
       "sshd": "latest"
@@ -21,7 +20,8 @@
                 "github.vscode-github-actions",
                 "ms-dotnettools.csdevkit",
 				"ms-dotnettools.vscode-dotnet-runtime",
-                "github.copilot"
+                "github.copilot",
+                "ms-azuretools.vscode-docker"
             ]
         }
     },
@@ -29,7 +29,8 @@
         32000,
         32001
     ],
-    "postCreateCommand": "sudo dotnet workload update & sudo dotnet workload install aspire & sudo dotnet workload list",
+    "postCreateCommand": "",
+    "postStartCommand": "ollama pull phi3",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb",

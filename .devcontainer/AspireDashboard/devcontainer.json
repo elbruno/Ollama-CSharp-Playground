@@ -1,5 +1,5 @@
 {
-    "name": "aspire dashboard labs",
+    "name": "Aspire Dashboard Labs",
     "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
