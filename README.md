@@ -67,7 +67,14 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 
 If you want to learn more about how to use this repo, check the following videos:
 
+### Overview of Ollama C# Playground Repository.
+
 [![Watch the video](./imgs/40ytintro.jpg)](https://youtu.be/HmKpHErUEHM)
+
+### Retrieval-Augmented Generation (RAG) with .NET 8: A Full Local Resource Guide
+
+[![Retrieval-Augmented Generation (RAG) with .NET 8: A Full Local Resource Guide](./imgs/41ytrag.png)](https://youtu.be/VVZU-lbEegw)
+
 
 ## References
 
