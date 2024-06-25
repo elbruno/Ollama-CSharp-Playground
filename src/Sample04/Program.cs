@@ -52,7 +52,7 @@ var kernel = builder.Build();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var history = new ChatHistory();
-history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a funny ways. Use emojis if possible.");
+history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a funny ways with short messages. Use emojis if possible.");
 
 while (true)
 {
@@ -84,16 +84,18 @@ static IKernelBuilder ConfigureOpenTelemetry(IKernelBuilder builder, string otlp
 {
     builder.Services.AddLogging(logging =>
     {
-
-        //logging.AddConsole();
-       //logging.AddSimpleConsole(options => options.TimestampFormat = "hh:mm:ss ");
-        logging.SetMinimumLevel(LogLevel.Debug);
+        logging.AddOpenTelemetry(configure =>
+        {
+            configure.IncludeFormattedMessage = true;
+            configure.IncludeScopes = true;
+        });
+        logging.SetMinimumLevel(LogLevel.Trace);
         logging.Configure(options =>
         {
-            options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId;
+            options.ActivityTrackingOptions = ActivityTrackingOptions.TraceState | ActivityTrackingOptions.TraceId | ActivityTrackingOptions.TraceFlags;
         });
     });
-    
+
     builder.Services.AddOpenTelemetry()
         .ConfigureResource(c => c.AddService("Sample04"))
         .WithMetrics(metrics =>
