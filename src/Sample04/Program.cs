@@ -22,16 +22,13 @@
 //    THE SOFTWARE.
 
 #pragma warning disable SKEXP0001, SKEXP0003, SKEXP0010, SKEXP0011, SKEXP0050, SKEXP0052
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 using OpenTelemetry;
+using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -41,15 +38,40 @@ using System.Text;
 var otlpEndPoint = "http://localhost:4317";
 var phi3EndPoint = "http://localhost:11434";
 
-// Create kernel with a custom http address
+// create kernel and add Phi-3 chat completion
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: "phi3",
     endpoint: new Uri(phi3EndPoint),
     apiKey: "apikey");
-ConfigureOpenTelemetry(builder, otlpEndPoint);
+
+// add OTLP exporter for logs
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.AddOpenTelemetry(options =>
+    {
+        options.AddOtlpExporter(configure => configure.Endpoint = new Uri(otlpEndPoint));
+        options.IncludeFormattedMessage = true;
+        options.IncludeScopes = true;
+    });
+    builder.SetMinimumLevel(LogLevel.Trace);
+});
+builder.Services.AddSingleton(loggerFactory);
+builder.Services.AddLogging(c => c.SetMinimumLevel(LogLevel.Trace).AddDebug());
+
 var kernel = builder.Build();
 
+// add trace and meter providers
+using var traceProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("Microsoft.SemanticKernel*")
+    .AddOtlpExporter()
+    .Build();
+using var meterProvider = Sdk.CreateMeterProviderBuilder()
+    .AddMeter("Microsoft.SemanticKernel*")
+    .AddOtlpExporter()
+    .Build();
+
+// start chat
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var history = new ChatHistory();
 history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a funny ways with short messages. Use emojis if possible.");
@@ -63,7 +85,7 @@ while (true)
         break;
     }
     history.AddUserMessage(userQ);
-    kernel.Services.GetRequiredService<ILogger<Program>>().LogInformation($"User Question: {userQ}");
+    AddLog(kernel, $"User Question: {userQ}");    
 
     Console.Write($"Phi-3: ");
     StringBuilder sb = new();
@@ -77,43 +99,11 @@ while (true)
     history.AddAssistantMessage(sb.ToString());
 
     // logging message
-    kernel.Services.GetRequiredService<ILogger<Program>>().LogInformation($"Phi-3 Response: {sb.ToString()}");
+    AddLog(kernel, $"Phi-3 Response: {sb.ToString()}");
 }
 
-static IKernelBuilder ConfigureOpenTelemetry(IKernelBuilder builder, string otlpEndPoint)
+static void AddLog(Kernel kernel, string message)
 {
-    builder.Services.AddLogging(logging =>
-    {
-        logging.AddOpenTelemetry(configure =>
-        {
-            configure.IncludeFormattedMessage = true;
-            configure.IncludeScopes = true;
-        });
-        logging.SetMinimumLevel(LogLevel.Trace);
-        logging.Configure(options =>
-        {
-            options.ActivityTrackingOptions = ActivityTrackingOptions.TraceState | ActivityTrackingOptions.TraceId | ActivityTrackingOptions.TraceFlags;
-        });
-    });
-
-    builder.Services.AddOpenTelemetry()
-        .ConfigureResource(c => c.AddService("Sample04"))
-        .WithMetrics(metrics =>
-        {
-            metrics.AddHttpClientInstrumentation()
-                   .AddRuntimeInstrumentation();
-        })
-        .WithTracing(tracing =>
-        {
-            tracing.AddHttpClientInstrumentation();
-        });
-
-
-    var useOtlpExporter = !string.IsNullOrWhiteSpace(otlpEndPoint);
-    if (useOtlpExporter)
-    {
-        builder.Services.AddOpenTelemetry().UseOtlpExporter();
-    }
-
-    return builder;
+    var logger = kernel.Services.GetService<ILogger<Program>>();
+    logger?.LogInformation(message);
 }
