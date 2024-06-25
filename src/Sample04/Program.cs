@@ -26,6 +26,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
@@ -36,13 +37,17 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System.Text;
 
+// Define endpoints for telemetry and Phi-3
+var otlpEndPoint = "http://localhost:4317";
+var phi3EndPoint = "http://localhost:11434";
+
 // Create kernel with a custom http address
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
     modelId: "phi3",
-    endpoint: new Uri("http://localhost:11434"),
+    endpoint: new Uri(phi3EndPoint),
     apiKey: "apikey");
-ConfigureOpenTelemetry(builder);
+ConfigureOpenTelemetry(builder, otlpEndPoint);
 var kernel = builder.Build();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
@@ -75,18 +80,20 @@ while (true)
     kernel.Services.GetRequiredService<ILogger<Program>>().LogInformation($"Phi-3 Response: {sb.ToString()}");
 }
 
-static IKernelBuilder ConfigureOpenTelemetry(IKernelBuilder builder)
+static IKernelBuilder ConfigureOpenTelemetry(IKernelBuilder builder, string otlpEndPoint)
 {
-
     builder.Services.AddLogging(logging =>
     {
+
         //logging.AddConsole();
+       //logging.AddSimpleConsole(options => options.TimestampFormat = "hh:mm:ss ");
+        logging.SetMinimumLevel(LogLevel.Debug);
         logging.Configure(options =>
         {
             options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId;
         });
     });
-
+    
     builder.Services.AddOpenTelemetry()
         .ConfigureResource(c => c.AddService("Sample04"))
         .WithMetrics(metrics =>
@@ -99,8 +106,6 @@ static IKernelBuilder ConfigureOpenTelemetry(IKernelBuilder builder)
             tracing.AddHttpClientInstrumentation();
         });
 
-    // Use the OTLP exporter if the endpoint is configured.
-    var otlpEndPoint ="http://localhost:4317";
 
     var useOtlpExporter = !string.IsNullOrWhiteSpace(otlpEndPoint);
     if (useOtlpExporter)
