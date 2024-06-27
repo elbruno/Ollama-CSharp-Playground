@@ -65,6 +65,10 @@ await foreach (var result in response)
 // separator
 Console.WriteLine("");
 Console.WriteLine("==============");
+Console.WriteLine("Press Enter to continue");
+Console.ReadLine();
+Console.WriteLine("==============");
+Console.WriteLine($"Phi-3 response (using semantic memory).");
 Console.WriteLine("");
 
 // get the embeddings generator service
@@ -101,7 +105,7 @@ var arguments = new KernelArguments(settings)
     { "collection", MemoryCollectionName }
 };
 
-Console.WriteLine($"Phi-3 response (using semantic memory).");
+
 
 response = kernel.InvokePromptStreamingAsync(prompt, arguments);
 await foreach (var result in response)
