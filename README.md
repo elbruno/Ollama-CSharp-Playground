@@ -75,6 +75,10 @@ If you want to learn more about how to use this repo, check the following videos
 
 [![Retrieval-Augmented Generation (RAG) with .NET 8: A Full Local Resource Guide](./imgs/41ytrag.png)](https://youtu.be/VVZU-lbEegw)
 
+### Test Aspire Dashboard using Codespaces
+
+[![Test Aspire Dashboard using Codespaces](./imgs/45AspireDashboard.png)](https://youtu.be/sm_eLUPxkuE?si=YgA-vRT63iVujCPr)
+
 
 ## References
 
