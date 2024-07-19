@@ -22,30 +22,47 @@
 //    THE SOFTWARE.
 
 #pragma warning disable SKEXP0001, SKEXP0003, SKEXP0010, SKEXP0011, SKEXP0050, SKEXP0052
+
+using Microsoft.Extensions.Hosting;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 
-// Create kernel with a custom http address
-var builder = Kernel.CreateBuilder();
-builder.AddOpenAIChatCompletion(
-    modelId: "phi3",
-    endpoint: new Uri("http://localhost:11434"),
-    apiKey: "apikey");
-var kernel = builder.Build();
+var builder = Host.CreateApplicationBuilder();
+builder.AddServiceDefaults();
 
-// 14 - define prompt execution settings
-var settings = new OpenAIPromptExecutionSettings
+var kernel = Kernel.CreateBuilder()
+    .AddOpenAIChatCompletion(
+        modelId: "phi3",
+        endpoint: new Uri("http://localhost:11434"),
+        apiKey: "apikey")
+    .Build();
+
+var app = builder.Build();
+app.Start();
+
+var chat = kernel.GetRequiredService<IChatCompletionService>();
+var history = new ChatHistory();
+history.AddSystemMessage("You are a useful chatbot. Always reply in short messages and in a funny ways");
+
+while (true)
 {
-    MaxTokens = 100,
-    Temperature = 1
-};
-var kernelArguments = new KernelArguments(settings);
+    Console.Write("Q: ");
+    var userQ = Console.ReadLine();
+    if (string.IsNullOrEmpty(userQ))
+    {
+        break;
+    }
+    history.AddUserMessage(userQ);
 
-var prompt = "Write a short joke about kittens. Use Emojis";
-var response = kernel.InvokePromptStreamingAsync(prompt, kernelArguments);
+    var result = chat.GetStreamingChatMessageContentsAsync(history);
+    var response = "";
+    Console.Write("Phi-3: ");
+    await foreach (var message in result)
+    {
+        response += message;
+        Console.Write(message);
+    }
+    Console.WriteLine("");
 
-await foreach (var message in response)
-{
-    Console.Write(message.ToString());
+    history.AddAssistantMessage(response);
 }
