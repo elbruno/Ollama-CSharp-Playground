@@ -80,6 +80,10 @@ If you want to learn more about how to use this repo, check the following videos
 
 [![Test Aspire Dashboard using Codespaces](./imgs/45AspireDashboard.png)](https://youtu.be/sm_eLUPxkuE?si=YgA-vRT63iVujCPr)
 
+### Add Aspire Service Defaults to a Console Chat App
+
+[![Add Aspire Service Defaults to a Console Chat App](./imgs/60AddAspireSvcDefToConsoleSpp.png)](https://youtu.be/zFnju6Sm08U)
+
 
 ## References
 
