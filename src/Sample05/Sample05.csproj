@@ -10,6 +10,6 @@
 		<PackageReference Include="Microsoft.SemanticKernel" Version="1.16.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Console5AspireServiceDefaults\Console5AspireServiceDefaults.csproj" />
+	  <ProjectReference Include="..\AspireServiceDefaults\AspireServiceDefaults.csproj" />
 	</ItemGroup>
 </Project>

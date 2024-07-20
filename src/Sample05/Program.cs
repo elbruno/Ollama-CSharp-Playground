@@ -26,6 +26,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
+using System.Runtime.InteropServices;
 
 var builder = Host.CreateApplicationBuilder();
 builder.AddServiceDefaults();
@@ -42,7 +43,7 @@ app.Start();
 
 var chat = kernel.GetRequiredService<IChatCompletionService>();
 var history = new ChatHistory();
-history.AddSystemMessage("You are a useful chatbot. Always reply in short messages and in a funny ways");
+history.AddSystemMessage("You are a useful chatbot. You always replies with a single sentence.");
 
 while (true)
 {
