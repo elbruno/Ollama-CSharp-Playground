@@ -34,6 +34,7 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 | Sample02  | This is a sample project that implement a Console chat using Semantic Kernel. |
 | [Sample03](./src/Sample03/readme.md) | This is a sample project that implement a RAG using local embeddings and Semantic Kernel. Check the details of the local RAG [here](./src/Sample03/readme.md)|
 | [Sample04](./src/Sample04/readme.md) | This is a sample console project that implement a Console chat using Semantic Kernel. It also uses Aspire Dashboard to track telemetry. Check the Aspire Dashboard in the references sections to learn more. |
+| [Sample05](./src/Sample05/readme.md) | This is a sample project that adds Aspire Service Telemetry project to a Console chat and show how to use Aspire Dashboard to track telemetry. Check the Aspire Dashboard in the references sections to learn more. |
 
 ## How to run a sample
 
