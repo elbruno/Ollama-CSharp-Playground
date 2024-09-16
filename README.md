@@ -10,14 +10,16 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 ![create Codespace](./imgs/05CreateCodeSpace.png)
 
 1. Once the Codespace is loaded, it should have [ollama](https://ollama.com/) pre-installed as well as [.NET 8](https://dotnet.microsoft.com/en-us/download).
-1. Ask Ollama to run the SLM of your choice. For example, to run the [phi3](https://ollama.com/library/phi3) model:
+
+1. Ask Ollama to run the SLM of your choice. For example, to run the [Phi-3.5](https://ollama.com/library/phi3.5) model:
 
     ```shell
-    ollama run phi3:mini
+    ollama run phi3.5:mini
     ```
 
     That will take a few minutes to download the model into the Codespace.
-4. Once you see "success" in the output, you can send a message to that model from the prompt.
+
+1. Once you see "success" in the output, you can send a message to that model from the prompt.
 
     ```shell
     >>> Write a joke about kittens
@@ -25,8 +27,9 @@ This project is designed to be opened in GitHub Codespaces as an easy way for an
 
 ![run ollama and ask for a joke](./imgs/10ollamarunphi.gif)
 
-5. After several seconds, you should see a response stream in from the model.
-6. To learn about different techniques used with language models, check the sample projects in the `.\src` folder:
+1. After several seconds, you should see a response stream in from the model.
+
+1. To learn about different techniques used with language models, check the sample projects in the `.\src` folder:
 
 | Project | Description |
 |---------|-------------|

@@ -10,11 +10,11 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0-preview.6.24327.7" />
-		<PackageReference Include="Microsoft.KernelMemory.SemanticKernelPlugin" Version="0.68.240716.1" />
-		<PackageReference Include="Microsoft.SemanticKernel" Version="1.16.0" />
-		<PackageReference Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.16.0-alpha" />
+		<PackageReference Include="Microsoft.KernelMemory.SemanticKernelPlugin" Version="0.73.240906.1" />
+		<PackageReference Include="Microsoft.SemanticKernel" Version="1.19.0" />
+		<PackageReference Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.16.2-alpha" />
 		<PackageReference Include="SmartComponents.LocalEmbeddings.SemanticKernel" Version="0.1.0-preview10148" />
+		<PackageReference Include="Spectre.Console" Version="0.49.2-preview.0.14" />
 		<PackageReference Include="System.Linq.Async" Version="6.0.1" />
 	</ItemGroup>
 
