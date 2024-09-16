@@ -33,7 +33,7 @@ builder.AddServiceDefaults();
 
 var kernel = Kernel.CreateBuilder()
     .AddOpenAIChatCompletion(
-        modelId: "phi3",
+        modelId: "phi3.5",
         endpoint: new Uri("http://localhost:11434"),
         apiKey: "apikey")
     .Build();

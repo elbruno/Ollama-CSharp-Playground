@@ -41,7 +41,7 @@ var phi3EndPoint = "http://localhost:11434";
 // create kernel and add Phi-3 chat completion
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
-    modelId: "phi3",
+    modelId: "phi3.5",
     endpoint: new Uri(phi3EndPoint),
     apiKey: "apikey");
 
