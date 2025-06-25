@@ -42,20 +42,20 @@ using Microsoft.SemanticKernel.Plugins.Memory;
 
 var question = "What is Bruno's favourite super hero?";
 Console.WriteLine($"This program will answer the following question: {question}");
-Console.WriteLine("1st approach will be to ask the question directly to the Phi-3 model.");
+Console.WriteLine("1st approach will be to ask the question directly to the Phi-4 mini model.");
 Console.WriteLine("2nd approach will be to add facts to a semantic memory and ask the question again");
 Console.WriteLine("");
 
 // Create a chat completion service
 var builder = Kernel.CreateBuilder();
 builder.AddOpenAIChatCompletion(
-    modelId: "phi3.5",
+    modelId: "phi4-mini",
     endpoint: new Uri("http://localhost:11434"),
     apiKey: "apikey");
 builder.AddLocalTextEmbeddingGeneration();
 Kernel kernel = builder.Build();
 
-Console.WriteLine($"Phi-3 response (no memory).");
+Console.WriteLine($"Phi-4 response (no memory).");
 var response = kernel.InvokePromptStreamingAsync(question);
 await foreach (var result in response)
 {
@@ -68,7 +68,7 @@ Console.WriteLine("==============");
 Console.WriteLine("Press Enter to continue");
 Console.ReadLine();
 Console.WriteLine("==============");
-Console.WriteLine($"Phi-3 response (using semantic memory).");
+Console.WriteLine($"Phi-4 response (using semantic memory).");
 Console.WriteLine("");
 
 // get the embeddings generator service
