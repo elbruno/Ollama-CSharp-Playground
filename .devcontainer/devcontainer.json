@@ -1,5 +1,5 @@
 {
-    "name": "Ollama with Phi-3.5",
+    "name": "Ollama with Phi-4 Mini",
     "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
@@ -30,7 +30,7 @@
         32001
     ],
     "postCreateCommand": "",
-    "postStartCommand": "ollama pull phi3.5",
+    "postStartCommand": "ollama pull phi4-mini",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb",
