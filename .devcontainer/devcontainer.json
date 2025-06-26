@@ -30,7 +30,7 @@
         32001
     ],
     "postCreateCommand": "",
-    "postStartCommand": "ollama pull phi4-mini",
+    "postStartCommand": "ollama pull phi4-mini & ollama pull phi3.5",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb",
